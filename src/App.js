@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Logo from './rickandmortylogo.png';
+import "./index.css";
+import Layout from "./Layout";
+const queryClient = new QueryClient();
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <ThemeProvider theme={theme}>
+        <img className="heroimage" src={Logo} alt="logo" />
+        
+          <Layout />
+        </ThemeProvider>
+      </Router>
+    </QueryClientProvider>
   );
 }
-
-export default App;
+const theme = createMuiTheme({
+  typography: {
+    h1: {
+      fontFamily: "Roboto Mono, monospace",
+    },
+    h2: {
+      color:"white",
+      fontFamily: "Roboto Mono, monospace",
+    },
+    h3: {
+      fontFamily: "Roboto Mono, monospace",
+    },
+    h4: {
+      fontFamily: "Roboto Mono, monospace",
+    },
+    h5: {
+      fontFamily: "Roboto Mono, monospace",
+    },
+    h6: {
+      fontFamily: "Roboto Mono, monospace",
+    },
+  },
+});
